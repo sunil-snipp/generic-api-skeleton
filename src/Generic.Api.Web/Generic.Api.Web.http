@@ -1,0 +1,6 @@
+@Generic.Api.Web_HostAddress = http://localhost:5028
+
+GET {{Generic.Api.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
