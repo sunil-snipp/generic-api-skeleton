@@ -1,8 +1,8 @@
-using Generic.Api.Application.Abstractions.ExternalIdentity;
-using Generic.Api.Application.Abstractions.PowerBi;
-using Generic.Api.Application.Configuration;
-using Generic.Api.Infrastructure.Integrations.ExternalIdentity;
-using Generic.Api.Infrastructure.Integrations.PowerBi;
+using Generic.Api.Application.Reports;
+using Generic.Api.Application.Auth.Ports;
+using Generic.Api.Application.Reports.Ports;
+using Generic.Api.Infrastructure.ExternalIdentity;
+using Generic.Api.Infrastructure.PowerBi;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +14,10 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        services
+            .AddOptions<ReportOptions>()
+            .Bind(configuration.GetSection(ReportOptions.SectionName));
+
         services
             .AddOptions<PowerBiOptions>()
             .Bind(configuration.GetSection(PowerBiOptions.SectionName));

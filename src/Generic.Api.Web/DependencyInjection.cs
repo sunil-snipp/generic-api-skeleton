@@ -1,4 +1,4 @@
-using Generic.Api.Application.Abstractions;
+using Generic.Api.Application.Common;
 using Generic.Api.Web.OpenApi;
 using Generic.Api.Web.Security;
 using Generic.Api.Web.Services;
@@ -12,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddHttpContextAccessor();
         services.AddScoped<IRequestContext, HttpRequestContext>();
+        services.AddScoped<ICurrentAccessTokenProvider, HttpContextAccessTokenProvider>();
 
         services.AddExceptionHandler<Errors.GlobalExceptionHandler>();
         services.AddProblemDetails();

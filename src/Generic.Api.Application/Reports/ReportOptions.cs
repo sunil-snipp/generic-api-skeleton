@@ -1,6 +1,6 @@
-namespace Generic.Api.Application.Configuration;
+namespace Generic.Api.Application.Reports;
 
-public sealed class PowerBiOptions
+public sealed class ReportOptions
 {
     public const string SectionName = "PowerBi";
 

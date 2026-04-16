@@ -1,4 +1,4 @@
-namespace Generic.Api.Application.Contracts.Reports;
+namespace Generic.Api.Application.Reports.Dtos;
 
 public sealed record EmbedTokenDto(
     string ReportId,

@@ -1,9 +1,12 @@
-using Generic.Api.Application.Abstractions.ExternalIdentity;
+using Generic.Api.Application.Auth.Models;
+using Generic.Api.Application.Auth.Ports;
 using Microsoft.Extensions.Options;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Security.Authentication;
 
-namespace Generic.Api.Infrastructure.Integrations.ExternalIdentity;
+namespace Generic.Api.Infrastructure.ExternalIdentity;
 
 public sealed class ExternalIdentityClient(
     HttpClient httpClient,
@@ -55,10 +58,22 @@ public sealed class ExternalIdentityClient(
 
         var profilePath = options.Value.ProfilePathTemplate.Replace("{apiVersion}", options.Value.ApiVersion, StringComparison.OrdinalIgnoreCase);
         var response = await httpClient.GetAsync(profilePath, cancellationToken);
-        if (!response.IsSuccessStatusCode)
+        if (response.StatusCode == HttpStatusCode.NotFound)
         {
             return null;
         }
+
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            throw new AuthenticationException("External identity rejected the supplied bearer token.");
+        }
+
+        if (response.StatusCode == HttpStatusCode.Forbidden)
+        {
+            throw new UnauthorizedAccessException("External identity denied access to the profile.");
+        }
+
+        response.EnsureSuccessStatusCode();
 
         var payload = await response.Content.ReadFromJsonAsync<ExternalIdentityProfileResponse>(cancellationToken: cancellationToken);
         if (payload is null)
@@ -93,8 +108,7 @@ public sealed class ExternalIdentityClient(
         var groupIds = profile.AssociatedClients
             .Select(client => client.ClientId.ToString())
             .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray()
-            ;
+            .ToArray();
 
         var campaignIds = profile.AssociatedClients
             .Select(client => client.ExternalClientId)

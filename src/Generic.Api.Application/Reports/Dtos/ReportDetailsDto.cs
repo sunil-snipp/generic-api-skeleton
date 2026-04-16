@@ -1,6 +1,6 @@
-namespace Generic.Api.Application.Abstractions.PowerBi;
+namespace Generic.Api.Application.Reports.Dtos;
 
-public sealed record PowerBiReport(
+public sealed record ReportDetailsDto(
     string ReportId,
     string Name,
     string WorkspaceId,

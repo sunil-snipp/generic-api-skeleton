@@ -1,6 +1,6 @@
-using Generic.Api.Application.Abstractions.PowerBi;
+using Generic.Api.Application.Reports.Ports;
 
-namespace Generic.Api.Infrastructure.Integrations.PowerBi;
+namespace Generic.Api.Infrastructure.PowerBi;
 
 public sealed class PowerBiClient : IPowerBiClient
 {

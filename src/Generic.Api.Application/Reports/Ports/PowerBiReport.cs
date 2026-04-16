@@ -1,6 +1,6 @@
-namespace Generic.Api.Application.Contracts.Reports;
+namespace Generic.Api.Application.Reports.Ports;
 
-public sealed record ReportDetailsDto(
+public sealed record PowerBiReport(
     string ReportId,
     string Name,
     string WorkspaceId,

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Security.Authentication;
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace Generic.Api.Web.Errors;
@@ -10,7 +11,7 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
         Exception exception,
         CancellationToken cancellationToken)
     {
-        if (exception is KeyNotFoundException or UnauthorizedAccessException or ArgumentException)
+        if (exception is KeyNotFoundException or AuthenticationException or UnauthorizedAccessException or ArgumentException)
         {
             logger.LogWarning(exception, "Handled exception");
         }
@@ -31,6 +32,14 @@ public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logge
                 body = new ProblemDetailsBody(
                     StatusCodes.Status404NotFound,
                     "Not Found",
+                    ex.Message,
+                    traceId);
+                break;
+            case AuthenticationException ex:
+                statusCode = StatusCodes.Status401Unauthorized;
+                body = new ProblemDetailsBody(
+                    StatusCodes.Status401Unauthorized,
+                    "Unauthorized",
                     ex.Message,
                     traceId);
                 break;

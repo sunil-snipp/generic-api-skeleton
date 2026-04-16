@@ -1,4 +1,4 @@
-namespace Generic.Api.Infrastructure.Integrations.ExternalIdentity;
+namespace Generic.Api.Infrastructure.ExternalIdentity;
 
 public sealed class ExternalIdentityOptions
 {

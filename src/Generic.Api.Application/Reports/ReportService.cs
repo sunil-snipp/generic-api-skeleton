@@ -1,18 +1,15 @@
-using Generic.Api.Application.Abstractions;
-using Generic.Api.Application.Abstractions.ExternalIdentity;
-using Generic.Api.Application.Abstractions.PowerBi;
-using Generic.Api.Application.Abstractions.Reports;
-using Generic.Api.Application.Configuration;
-using Generic.Api.Application.Contracts.Reports;
+using Generic.Api.Application.Common;
+using Generic.Api.Application.Reports.Dtos;
+using Generic.Api.Application.Reports.Ports;
 using Microsoft.Extensions.Options;
 
-namespace Generic.Api.Application.Services;
+namespace Generic.Api.Application.Reports;
 
 public sealed class ReportService(
     IRequestContext requestContext,
     IAccessPolicyService accessPolicyService,
     IPowerBiClient powerBiClient,
-    IOptions<PowerBiOptions> options) : IReportService
+    IOptions<ReportOptions> options) : IReportService
 {
     public async Task<IReadOnlyCollection<ReportSummaryDto>> GetReportsAsync(CancellationToken cancellationToken = default)
     {

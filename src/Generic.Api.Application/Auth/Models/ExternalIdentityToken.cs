@@ -1,4 +1,4 @@
-namespace Generic.Api.Application.Abstractions.ExternalIdentity;
+namespace Generic.Api.Application.Auth.Models;
 
 public sealed record ExternalIdentityToken(
     string AccessToken,

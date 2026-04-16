@@ -1,4 +1,4 @@
-namespace Generic.Api.Application.Abstractions;
+namespace Generic.Api.Application.Common;
 
 public interface IRequestContext
 {

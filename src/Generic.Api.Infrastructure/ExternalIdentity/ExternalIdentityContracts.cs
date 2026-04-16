@@ -1,4 +1,4 @@
-namespace Generic.Api.Infrastructure.Integrations.ExternalIdentity;
+namespace Generic.Api.Infrastructure.ExternalIdentity;
 
 internal sealed record ExternalIdentityTokenRequest(string Username, string Password);
 

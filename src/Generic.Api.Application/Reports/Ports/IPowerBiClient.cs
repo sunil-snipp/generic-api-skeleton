@@ -1,4 +1,4 @@
-namespace Generic.Api.Application.Abstractions.PowerBi;
+namespace Generic.Api.Application.Reports.Ports;
 
 public interface IPowerBiClient
 {

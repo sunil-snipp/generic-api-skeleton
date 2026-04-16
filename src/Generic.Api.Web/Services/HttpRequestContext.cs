@@ -1,4 +1,4 @@
-using Generic.Api.Application.Abstractions;
+using Generic.Api.Application.Common;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

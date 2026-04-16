@@ -1,6 +1,6 @@
-using Generic.Api.Application.Contracts.Reports;
+using Generic.Api.Application.Reports.Dtos;
 
-namespace Generic.Api.Application.Abstractions.Reports;
+namespace Generic.Api.Application.Reports;
 
 public interface IReportService
 {

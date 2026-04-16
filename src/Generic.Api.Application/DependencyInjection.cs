@@ -1,7 +1,5 @@
-using Generic.Api.Application.Abstractions.ExternalIdentity;
-using Generic.Api.Application.Abstractions.PowerBi;
-using Generic.Api.Application.Abstractions.Reports;
-using Generic.Api.Application.Services;
+using Generic.Api.Application.Reports;
+using Generic.Api.Application.Reports.Ports;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Generic.Api.Application;
