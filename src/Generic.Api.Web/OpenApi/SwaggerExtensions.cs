@@ -13,20 +13,16 @@ public static class SwaggerExtensions
         services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc(version, new OpenApiInfo { Title = title, Version = version });
-            var jwtSection = configuration.GetSection("Jwt");
-            var signingKey = jwtSection["SigningKey"];
-            if (!string.IsNullOrWhiteSpace(signingKey) && signingKey.Length >= 32)
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme.",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "bearer",
-                    BearerFormat = "JWT"
-                });
-            }
+                Description = "Paste JWT token only. Swagger adds Bearer prefix automatically.",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer",
+                BearerFormat = "JWT"
+            });
+
         });
 
         return services;

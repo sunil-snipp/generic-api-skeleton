@@ -1,4 +1,5 @@
 using Generic.Api.Application.Abstractions.ExternalIdentity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ public sealed class AuthController(IExternalIdentityClient externalIdentityClien
     }
 
     [HttpGet("profile")]
+    [Authorize]
     [ProducesResponseType(typeof(ExternalIdentityProfile), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

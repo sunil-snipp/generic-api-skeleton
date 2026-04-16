@@ -1,5 +1,4 @@
 using Generic.Api.Application.Abstractions;
-using Generic.Api.Infrastructure.Persistence;
 using Generic.Api.Web.OpenApi;
 using Generic.Api.Web.Security;
 using Generic.Api.Web.Services;
@@ -22,8 +21,7 @@ public static class DependencyInjection
         services.AddControllers();
         services.AddGenericApiSwagger(configuration);
 
-        services.AddHealthChecks()
-            .AddDbContextCheck<ApplicationDbContext>("database");
+        services.AddHealthChecks();
 
         services.AddCors(options =>
         {

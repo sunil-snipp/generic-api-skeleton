@@ -1,12 +1,10 @@
 using Generic.Api.Application;
 using Generic.Api.Infrastructure;
-using Generic.Api.Infrastructure.Persistence;
 using Generic.Api.Web;
 using Generic.Api.Web.Middleware;
 using Generic.Api.Web.OpenApi;
 using Generic.Api.Web.Security;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
 
@@ -43,11 +41,8 @@ try
 
     app.UseCors("Default");
 
-    if (JwtExtensions.IsJwtConfigured(app.Configuration))
-    {
-        app.UseAuthentication();
-        app.UseAuthorization();
-    }
+    app.UseAuthentication();
+    app.UseAuthorization();
 
     app.UseRateLimiter();
 
@@ -63,13 +58,6 @@ try
     app.MapHealthChecks("/health/ready");
 
     app.MapControllers();
-
-    if (app.Configuration.GetValue("Database:RunMigrationsOnStartup", app.Environment.IsDevelopment()))
-    {
-        using var scope = app.Services.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        await db.Database.MigrateAsync();
-    }
 
     await app.RunAsync();
 }

@@ -1,10 +1,8 @@
 using Generic.Api.Application.Abstractions.ExternalIdentity;
 using Generic.Api.Application.Abstractions.PowerBi;
 using Generic.Api.Application.Configuration;
-using Generic.Api.Infrastructure.Persistence;
 using Generic.Api.Infrastructure.Integrations.ExternalIdentity;
 using Generic.Api.Infrastructure.Integrations.PowerBi;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,12 +14,6 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("Database")
-            ?? "Data Source=generic-api.db";
-
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlite(connectionString));
-
         services
             .AddOptions<PowerBiOptions>()
             .Bind(configuration.GetSection(PowerBiOptions.SectionName));
