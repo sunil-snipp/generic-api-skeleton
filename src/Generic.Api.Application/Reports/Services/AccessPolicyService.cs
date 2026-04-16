@@ -1,7 +1,7 @@
-using Generic.Api.Application.Auth.Ports;
-using Generic.Api.Application.Reports.Ports;
+using Generic.Api.Application.Auth.Abstractions;
+using Generic.Api.Application.Reports.Abstractions;
 
-namespace Generic.Api.Application.Reports;
+namespace Generic.Api.Application.Reports.Services;
 
 public sealed class AccessPolicyService(IExternalIdentityClient externalIdentityClient) : IAccessPolicyService
 {

@@ -1,9 +1,9 @@
 using Generic.Api.Application.Common;
+using Generic.Api.Application.Reports.Abstractions;
 using Generic.Api.Application.Reports.Dtos;
-using Generic.Api.Application.Reports.Ports;
 using Microsoft.Extensions.Options;
 
-namespace Generic.Api.Application.Reports;
+namespace Generic.Api.Application.Reports.Services;
 
 public sealed class ReportService(
     IRequestContext requestContext,

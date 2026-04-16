@@ -14,6 +14,9 @@ public static class DependencyInjection
         services.AddScoped<IRequestContext, HttpRequestContext>();
         services.AddScoped<ICurrentAccessTokenProvider, HttpContextAccessTokenProvider>();
 
+        // NOTE: IStructuredLogger is registered in Infrastructure.AddInfrastructure()
+        // No need to register it here
+
         services.AddExceptionHandler<Errors.GlobalExceptionHandler>();
         services.AddProblemDetails();
 

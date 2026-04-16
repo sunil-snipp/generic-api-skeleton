@@ -1,6 +1,6 @@
 using Generic.Api.Application.Reports.Dtos;
 
-namespace Generic.Api.Application.Reports;
+namespace Generic.Api.Application.Reports.Abstractions;
 
 public interface IReportService
 {

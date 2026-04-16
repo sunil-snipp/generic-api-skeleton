@@ -1,4 +1,4 @@
-namespace Generic.Api.Application.Reports.Ports;
+namespace Generic.Api.Application.Reports.Abstractions;
 
 public interface IAccessPolicyService
 {

@@ -1,4 +1,4 @@
-using Generic.Api.Application.Reports;
+using Generic.Api.Application.Reports.Abstractions;
 using Generic.Api.Application.Reports.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

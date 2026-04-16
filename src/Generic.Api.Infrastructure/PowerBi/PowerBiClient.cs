@@ -1,4 +1,5 @@
-using Generic.Api.Application.Reports.Ports;
+using Generic.Api.Application.Reports.Abstractions;
+using Generic.Api.Application.Reports.Models;
 
 namespace Generic.Api.Infrastructure.PowerBi;
 

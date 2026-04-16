@@ -1,15 +1,15 @@
-namespace Generic.Api.Infrastructure.ExternalIdentity;
+namespace Generic.Api.Application.Auth.Models;
 
-internal sealed record ExternalIdentityTokenRequest(string Username, string Password);
+public sealed record ExternalIdentityTokenRequest(string Username, string Password);
 
-internal sealed record ExternalIdentityTokenResponse(
+public sealed record ExternalIdentityTokenResponse(
     string AccessToken,
     string TokenType,
     int ExpiresIn,
     string? RefreshToken,
     DateTimeOffset? RefreshTokenExpiresOn);
 
-internal sealed record ExternalIdentityProfileResponse(
+public sealed record ExternalIdentityProfileResponse(
     int UserId,
     string UserName,
     string? Email,
@@ -18,7 +18,7 @@ internal sealed record ExternalIdentityProfileResponse(
     string? PhoneNumber,
     IReadOnlyCollection<ExternalIdentityAssociatedClientResponse>? AssociatedClients);
 
-internal sealed record ExternalIdentityAssociatedClientResponse(
+public sealed record ExternalIdentityAssociatedClientResponse(
     int ClientId,
     string ClientName,
     string? ExternalClientId,

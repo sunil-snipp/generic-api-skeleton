@@ -1,4 +1,6 @@
-namespace Generic.Api.Application.Reports.Ports;
+using Generic.Api.Application.Reports.Models;
+
+namespace Generic.Api.Application.Reports.Abstractions;
 
 public interface IPowerBiClient
 {

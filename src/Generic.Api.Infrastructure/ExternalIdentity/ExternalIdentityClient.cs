@@ -1,5 +1,5 @@
+using Generic.Api.Application.Auth.Abstractions;
 using Generic.Api.Application.Auth.Models;
-using Generic.Api.Application.Auth.Ports;
 using Microsoft.Extensions.Options;
 using System.Net;
 using System.Net.Http.Headers;
@@ -23,6 +23,18 @@ public sealed class ExternalIdentityClient(
         var payload = new ExternalIdentityTokenRequest(username, password);
 
         var response = await httpClient.PostAsJsonAsync(tokenPath, payload, cancellationToken);
+
+        // Handle authentication failures gracefully
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            throw new AuthenticationException("Invalid username or password.");
+        }
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            throw new ArgumentException("Invalid request to external identity service.");
+        }
+
         response.EnsureSuccessStatusCode();
 
         var tokenResponse = await response.Content.ReadFromJsonAsync<ExternalIdentityTokenResponse>(cancellationToken: cancellationToken)

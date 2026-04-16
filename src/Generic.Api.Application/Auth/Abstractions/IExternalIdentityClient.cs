@@ -1,6 +1,6 @@
 using Generic.Api.Application.Auth.Models;
 
-namespace Generic.Api.Application.Auth.Ports;
+namespace Generic.Api.Application.Auth.Abstractions;
 
 public interface IExternalIdentityClient
 {

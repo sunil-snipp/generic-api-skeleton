@@ -1,5 +1,5 @@
-using Generic.Api.Application.Reports;
-using Generic.Api.Application.Reports.Ports;
+using Generic.Api.Application.Reports.Abstractions;
+using Generic.Api.Application.Reports.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Generic.Api.Application;
